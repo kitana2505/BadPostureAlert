@@ -26,11 +26,9 @@ if __name__ == "__main__":
 
         frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         # Get the angle
-        angle = badpose.get_angle(frame)
-
-        filter_pose_landmark = badpose.filtered_pose_landmarks
-
         # annotated_image = badpose.draw_landmarks_on_image(frame, None)
+
+        filter_pose_landmark = badpose.get_pose_landmarks(frame)
 
         annotated_image = frame.copy()
         height, width = annotated_image.shape[:2]

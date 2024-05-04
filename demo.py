@@ -43,6 +43,8 @@ while cap.isOpened():
         (int(filter_pose_landmark["left hip"].x * width), int(filter_pose_landmark["left hip"].y * height)), 
         (0, 255, 0), 2)    
 
+    # cv2.putText(annotated_image, f"Correlation Score: {correlation_score:.2f}", (10, 60), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
+
     if correlation_score > THRESHOLD:
         cv2.putText(annotated_image, "Good Posture :)", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
     else:

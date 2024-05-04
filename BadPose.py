@@ -59,6 +59,19 @@ class BadPoseAlert:
         solutions.drawing_styles.get_default_pose_landmarks_style())
     return annotated_image
   
+  def get_pose_landmarks(self, frame):
+    image_frame = mp.Image(image_format=mp.ImageFormat.SRGB, data=frame)
+    self.detection_result = self.detector.detect(image_frame)
+
+    filtered_pose_landmarks = {
+        "nose": self.detection_result.pose_landmarks[0][0],
+        "left shoulder": self.detection_result.pose_landmarks[0][11],
+        "left hip": self.detection_result.pose_landmarks[0][23],
+        "ear": self.detection_result.pose_landmarks[0][3],
+        "height": image_frame.height,
+        "width": image_frame.width,
+      }
+    return filtered_pose_landmarks
 
   def get_correlation_score(self, frame):
       image_frame = mp.Image(image_format=mp.ImageFormat.SRGB, data=frame)
